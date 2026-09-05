@@ -7,10 +7,16 @@ def search_jobs(keyword, preferred_location):
         "User-Agent": "Project-Agent/1.0"
     }
 
-    response = requests.get(url, headers=headers, timeout=10)
-    response.raise_for_status()
-
-    data = response.json()
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+    except requests.RequestException as error:
+        print(f"\nJob service unavailable: {error}")
+        return None
+    except ValueError:
+        print("\nJob service returned invalid data.")
+        return None
 
     jobs = []
 
@@ -48,7 +54,9 @@ if "job" in task.lower():
     preferred_location = input("What location do you prefer? ")
     results = search_jobs(keyword, preferred_location)
 
-    if not results:
+    if results is None:
+        pass
+    elif not results:
         print("\nNo matching jobs found. Try another title or location.")
     else:
         print("\nJobs found:\n")
