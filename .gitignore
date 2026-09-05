@@ -1,0 +1,17 @@
+# Python virtual environment
+.venv/
+
+# Python-generated cache files
+__pycache__/
+*.py[cod]
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Generated job-search results
+job_results.json
+
+# macOS files
+.DS_Store
