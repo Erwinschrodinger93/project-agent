@@ -18,17 +18,19 @@ def search_jobs(keyword, preferred_location):
         title = item.get("position", "")
         location = item.get("location", "Remote")
 
-        location_matches = (	 preferred_location.lower() == "remote"
-         or preferred_location.lower() in location.lower()
-         or "remote" in location.lower()
-          or "worldwide" in location.lower()
-         )
+        location_matches = (
+            preferred_location.lower() == "remote"
+            or preferred_location.lower() in location.lower()
+            or "remote" in location.lower()
+            or "worldwide" in location.lower()
+        )
+
         if keyword.lower() in title.lower() and location_matches:
             jobs.append({
                 "title": title,
                 "company": item.get("company", "Unknown"),
                 "location": location,
-                 "url": item.get("url", "No URL available"),
+                "url": item.get("url", "No URL available"),
             })
         if len(jobs) == 5:
             break
