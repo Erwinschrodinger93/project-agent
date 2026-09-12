@@ -44,28 +44,32 @@ def search_jobs(keyword, preferred_location):
 
     return jobs
 
-print("Project Agent Online.")
-print("Hello, Erwin.")
+def main():
+    print("Project Agent Online.")
+    print("Hello, Erwin.")
 
-task = input("What would you like me to do?")
+    task = input("What would you like me to do?")
 
-if "job" in task.lower():
-    keyword = input("What job title should I search for? ")
-    preferred_location = input("What location do you prefer? ")
-    results = search_jobs(keyword, preferred_location)
+    if "job" in task.lower():
+        keyword = input("What job title should I search for? ")
+        preferred_location = input("What location do you prefer? ")
+        results = search_jobs(keyword, preferred_location)
 
-    if results is None:
-        pass
-    elif not results:
-        print("\nNo matching jobs found. Try another title or location.")
+        if results is None:
+            pass
+        elif not results:
+            print("\nNo matching jobs found. Try another title or location.")
+        else:
+            print("\nJobs found:\n")
+
+            for job in results:
+                print(job["title"])
+                print(job["company"])
+                print(job["location"])
+                print(job["url"])
+                print("---")
     else:
-        print("\nJobs found:\n")
+        print("I don't know how to handle that task yet.")
 
-        for job in results:
-            print(job["title"])
-            print(job["company"])
-            print(job["location"])
-            print(job["url"])
-            print("---")
-else:
-    print("I don't know how to handle that task yet.")
+if __name__ == "__main__":
+    main()
